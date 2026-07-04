@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Détails du Produit | NBS</title>
+  <meta name="description" content="Consultez les détails, caractéristiques techniques et prix de notre sélection d'électroménager à Dakar.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-left">
+        <span>
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4z"/></svg>
+          Livraison sous 24h à Dakar
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Parcelle Assainie Unité 26, côté Poste Santé
+        </span>
+        <span>Paiement à la livraison</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="cart.html">Mon Panier</a>
+        <a href="https://wa.me/221777211987" target="_blank">+221 77 721 19 87</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">NBS</a>
+      <div class="header-search">
+        <input type="text" id="header-search-input" placeholder="Rechercher un produit..." aria-label="Recherche">
+        <button onclick="handleHeaderSearch()">
+          <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          Rechercher
+        </button>
+      </div>
+      <div class="header-actions">
+        <a href="cart.html" class="cart-icon-wrapper" id="header-cart-btn">
+          <svg class="cart-icon" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+          <div class="cart-info">
+            <span class="cart-label">Panier</span>
+            <span class="cart-count-text"><span id="cart-badge-count">0</span> articles</span>
+          </div>
+        </a>
+        <button class="mobile-nav-toggle" id="mobile-toggle">
+          <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="nav-bar">
+      <div class="container nav-bar-inner">
+        <button class="nav-categories-btn" onclick="window.location.href='products.html'">
+          <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+          Catégories
+        </button>
+        <nav class="nav-menu" id="nav-menu">
+          <a href="index.html" class="nav-link">Accueil</a>
+          <a href="products.html" class="nav-link active">Produits</a>
+          <a href="products.html?category=refrigerators" class="nav-link">Réfrigérateurs</a>
+          <a href="products.html?category=freezers" class="nav-link">Congélateurs</a>
+          <a href="products.html?category=washing_machines" class="nav-link">Machines à Laver</a>
+          <a href="cart.html" class="nav-link">Panier</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="container" style="padding-top: 20px; padding-bottom: 40px;">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb" id="product-breadcrumb">
+      <a href="index.html">Accueil</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="products.html">Boutique</a>
+      <span class="breadcrumb-separator">/</span>
+      <span class="current" id="breadcrumb-current">Chargement...</span>
+    </div>
+
+    <!-- Product Detail Card -->
+    <div class="product-detail-grid" id="product-detail-layout">
+      <!-- Image Column -->
+      <div class="detail-image-col">
+        <div class="detail-main-image">
+          <img id="detail-product-image" src="" alt="Produit">
+        </div>
+        <!-- Thumbnails placeholder -->
+        <div style="display: flex; gap: 8px; justify-content: center;">
+          <div style="width: 64px; height: 64px; border: 2px solid var(--primary); border-radius: var(--radius-sm); background: var(--bg-gray); overflow: hidden;">
+            <img id="detail-product-thumb" src="" alt="" style="width:100%; height:100%; object-fit:contain; padding:4px;">
+          </div>
+        </div>
+        <!-- Badge availability -->
+        <div class="detail-stock">
+          <span class="stock-dot"></span>
+          <span class="stock-label">En stock – Disponible à Dakar</span>
+        </div>
+      </div>
+
+      <!-- Info Column -->
+      <div class="detail-info-col">
+        <span class="detail-category-tag" id="detail-product-cat">Catégorie</span>
+        <h1 class="detail-name" id="detail-product-name">Nom du produit</h1>
+
+        <!-- Rating -->
+        <div class="detail-rating">
+          <span class="stars" id="detail-rating-stars">★★★★★</span>
+          <span id="detail-rating-number">5.0</span>
+          <span class="count" id="detail-reviews-count">(0 avis)</span>
+        </div>
+
+        <!-- Price Box -->
+        <div class="detail-price-box">
+          <div class="detail-price" id="detail-product-price">0 FCFA</div>
+          <div class="detail-price-note">✅ Paiement à la livraison • Livraison 24h à Dakar</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Description -->
+        <p class="detail-description" id="detail-product-desc">Chargement de la description...</p>
+
+        <!-- Features -->
+        <div>
+          <div style="font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px;">Points Forts :</div>
+          <ul class="detail-features-list" id="detail-features-list">
+            <!-- Injected by JS -->
+          </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Quantity & Add to Cart -->
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="font-size: 14px; font-weight: 600; color: var(--text-dark);">Quantité :</span>
+            <div class="qty-wrapper">
+              <button class="qty-btn" id="qty-minus">−</button>
+              <input type="number" class="qty-input" id="qty-input" value="1" min="1" readonly>
+              <button class="qty-btn" id="qty-plus">+</button>
+            </div>
+          </div>
+          <div class="detail-actions">
+            <button class="btn btn-primary btn-lg" id="btn-add-to-cart" style="flex: 1;">
+              <svg class="btn-icon" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+              Ajouter au Panier
+            </button>
+            <a href="cart.html" class="btn btn-secondary btn-lg">
+              Commander
+            </a>
+          </div>
+        </div>
+
+        <!-- Trust badges -->
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px;">
+          <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-muted);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#22c55e"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+            Produit neuf garanti
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-muted);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#e53935"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4z"/></svg>
+            Livraison sous 24h
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-muted);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+            Paiement à la livraison
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Specs + Description Tabs -->
+    <div class="white-box" style="margin-top: 24px;">
+      <div class="detail-tabs">
+        <button class="tab-btn active" onclick="switchTab(this, 'tab-specs')">Fiche Technique</button>
+        <button class="tab-btn" onclick="switchTab(this, 'tab-desc')">Description Detaillée</button>
+      </div>
+      <div class="tab-panel active" id="tab-specs">
+        <table class="specs-table" id="detail-specs-table">
+          <!-- Injected by JS -->
+        </table>
+      </div>
+      <div class="tab-panel" id="tab-desc">
+        <p id="detail-product-desc-full" style="font-size: 14px; line-height: 1.8; color: var(--text-body);"></p>
+      </div>
+    </div>
+
+    <!-- Related Products -->
+    <div style="margin-top: 40px;">
+      <div class="section-head" style="margin-bottom: 20px;">
+        <div class="section-head-left">
+          <div class="section-line"></div>
+          <div>
+            <h2 class="section-title">Produits Similaires</h2>
+            <p class="section-subtitle">Vous aimerez aussi</p>
+          </div>
+        </div>
+        <a href="products.html" class="view-all-link">
+          Voir tout
+          <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+        </a>
+      </div>
+      <div class="grid grid-4" id="related-products-container"></div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="footer-logo">NBS</a>
+          <p class="footer-desc">Votre boutique de référence pour l'électroménager à Dakar.</p>
+          <div class="footer-socials">
+            <a href="https://www.facebook.com/profile.php?id=100089895192384" class="social-link" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="https://wa.me/221777211987" class="social-link" target="_blank" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Nos Produits</h3>
+          <ul class="footer-links">
+            <li><a href="products.html?category=refrigerators">Réfrigérateurs</a></li>
+            <li><a href="products.html?category=freezers">Congélateurs</a></li>
+            <li><a href="products.html?category=washing_machines">Machines à Laver</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Liens Utiles</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="products.html">Catalogue</a></li>
+            <li><a href="cart.html">Mon Panier</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact &amp; Localisation</h3>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <span>Parcelle Assainie Unité 26, côté Poste Santé, Dakar</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            <span>+221 77 721 19 87</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <span>nbselectro@gmail.com</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 NBS. Tous droits réservés.</p>
+        <p>Paiement sécurisé à la livraison</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="js/products.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.getElementById('mobile-toggle').addEventListener('click', () => {
+      document.getElementById('nav-menu').classList.toggle('active');
+    });
+
+    function handleHeaderSearch() {
+      const q = document.getElementById('header-search-input').value.trim();
+      if (q) window.location.href = `products.html?search=${encodeURIComponent(q)}`;
+    }
+    document.getElementById('header-search-input').addEventListener('keypress', e => {
+      if (e.key === 'Enter') handleHeaderSearch();
+    });
+
+    function switchTab(btn, tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    let currentProduct = null;
+    let selectedQuantity = 1;
+
+    function loadProduct() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+      if (!id || typeof PRODUCTS === 'undefined') { window.location.href = 'products.html'; return; }
+      currentProduct = PRODUCTS.find(p => p.id === id);
+      if (!currentProduct) { window.location.href = 'products.html'; return; }
+
+      // Meta
+      document.title = `${currentProduct.name} | NBS`;
+      document.querySelector('meta[name="description"]').setAttribute('content', currentProduct.description);
+
+      // Breadcrumb
+      document.getElementById('product-breadcrumb').innerHTML = `
+        <a href="index.html">Accueil</a>
+        <span class="breadcrumb-separator">/</span>
+        <a href="products.html">Boutique</a>
+        <span class="breadcrumb-separator">/</span>
+        <a href="products.html?category=${currentProduct.category}">${currentProduct.categoryDisplay}</a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="current">${currentProduct.name}</span>
+      `;
+
+      // Image
+      const imgEl = document.getElementById('detail-product-image');
+      const thumbEl = document.getElementById('detail-product-thumb');
+      imgEl.src = currentProduct.image || '';
+      imgEl.alt = currentProduct.name;
+      imgEl.style.objectFit = 'contain';
+      if (thumbEl) { thumbEl.src = currentProduct.image || ''; thumbEl.alt = currentProduct.name; }
+
+      // Texts
+      document.getElementById('detail-product-cat').textContent = currentProduct.categoryDisplay;
+      document.getElementById('detail-product-name').textContent = currentProduct.name;
+      document.getElementById('detail-product-price').textContent = typeof app !== 'undefined' ? app.formatPrice(currentProduct.price) : currentProduct.price.toLocaleString('fr-FR') + ' FCFA';
+      document.getElementById('detail-product-desc').textContent = currentProduct.description;
+      const descFull = document.getElementById('detail-product-desc-full');
+      if (descFull) descFull.textContent = currentProduct.description;
+
+      // Stars
+      let stars = '';
+      const full = Math.floor(currentProduct.rating);
+      for (let i = 0; i < 5; i++) stars += i < full ? '★' : '☆';
+      document.getElementById('detail-rating-stars').textContent = stars;
+      document.getElementById('detail-rating-number').textContent = currentProduct.rating;
+      document.getElementById('detail-reviews-count').textContent = `(${currentProduct.reviewsCount} avis)`;
+
+      // Features
+      const fl = document.getElementById('detail-features-list');
+      fl.innerHTML = '';
+      currentProduct.features.forEach(feat => {
+        const li = document.createElement('li');
+        li.textContent = feat;
+        fl.appendChild(li);
+      });
+
+      // Specs
+      const specsTable = document.getElementById('detail-specs-table');
+      specsTable.innerHTML = '';
+      for (const [key, val] of Object.entries(currentProduct.specs)) {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td class="label">${key}</td><td class="value">${val}</td>`;
+        specsTable.appendChild(row);
+      }
+
+      renderRelatedProducts();
+    }
+
+    function renderRelatedProducts() {
+      const container = document.getElementById('related-products-container');
+      container.innerHTML = '';
+      let related = PRODUCTS.filter(p => p.category === currentProduct.category && p.id !== currentProduct.id).slice(0, 4);
+      if (related.length === 0) related = PRODUCTS.filter(p => p.id !== currentProduct.id).slice(0, 4);
+
+      related.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        let stars = '';
+        const full = Math.floor(product.rating);
+        for (let i = 0; i < 5; i++) stars += i < full ? '★' : '☆';
+        const price = typeof app !== 'undefined' ? app.formatPrice(product.price) : product.price.toLocaleString('fr-FR') + ' FCFA';
+        card.innerHTML = `
+          ${product.featured ? '<span class="product-badge">Vedette</span>' : ''}
+          <div class="product-image-box">
+            <a href="product-detail.html?id=${product.id}">
+              <img src="${product.image || ''}" alt="${product.name}" loading="lazy" onerror="this.style.opacity='0.2'">
+            </a>
+          </div>
+          <div class="product-details">
+            <span class="product-cat">${product.categoryDisplay}</span>
+            <a href="product-detail.html?id=${product.id}"><h3 class="product-name">${product.name}</h3></a>
+            <div class="product-rating"><span>${stars}</span><span style="color:#666;font-size:12px;">${product.rating}</span></div>
+            <div class="product-price-row">
+              <span class="product-price">${price}</span>
+              <button class="btn-add-cart-icon" onclick="app && app.addToCart('${product.id}', 1)">
+                <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+              </button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function setupEventListeners() {
+      document.getElementById('qty-minus').addEventListener('click', () => {
+        if (selectedQuantity > 1) { selectedQuantity--; document.getElementById('qty-input').value = selectedQuantity; }
+      });
+      document.getElementById('qty-plus').addEventListener('click', () => {
+        selectedQuantity++; document.getElementById('qty-input').value = selectedQuantity;
+      });
+      document.getElementById('btn-add-to-cart').addEventListener('click', () => {
+        if (currentProduct && app) app.addToCart(currentProduct.id, selectedQuantity);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadProduct();
+      setupEventListeners();
+    });
+  </script>
+</body>
+</html>

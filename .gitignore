@@ -1,0 +1,14 @@
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Temporary / Agent files
+.gemini/
+.agents/
+scratch/
+*.log
+.tempmediaStorage/
+*transcript*.jsonl

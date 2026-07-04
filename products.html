@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalogue Produits | NBS</title>
+  <meta name="description" content="Découvrez notre catalogue complet d'électroménager à Dakar. Filtrez par catégorie et prix et trouvez l'appareil idéal.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-left">
+        <span>
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4z"/></svg>
+          Livraison sous 24h à Dakar
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Parcelle Assainie Unité 26, côté Poste Santé
+        </span>
+        <span>Paiement à la livraison</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="cart.html">Mon Panier</a>
+        <a href="https://wa.me/221777211987" target="_blank">+221 77 721 19 87</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">NBS</a>
+      <div class="header-search">
+        <input type="text" id="header-search-input" placeholder="Rechercher un produit..." aria-label="Recherche">
+        <button onclick="handleHeaderSearch()">
+          <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          Rechercher
+        </button>
+      </div>
+      <div class="header-actions">
+        <a href="cart.html" class="cart-icon-wrapper" id="header-cart-btn">
+          <svg class="cart-icon" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+          <div class="cart-info">
+            <span class="cart-label">Panier</span>
+            <span class="cart-count-text"><span id="cart-badge-count">0</span> articles</span>
+          </div>
+        </a>
+        <button class="mobile-nav-toggle" id="mobile-toggle">
+          <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="nav-bar">
+      <div class="container nav-bar-inner">
+        <button class="nav-categories-btn" onclick="window.location.href='index.html'">
+          <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+          Catégories
+        </button>
+        <nav class="nav-menu" id="nav-menu">
+          <a href="index.html" class="nav-link">Accueil</a>
+          <a href="products.html?category=refrigerators" class="nav-link">Réfrigérateurs</a>
+          <a href="products.html?category=freezers" class="nav-link">Congélateurs</a>
+          <a href="products.html?category=washing_machines" class="nav-link">Machines à Laver</a>
+          <a href="products.html?category=ventilateurs" class="nav-link">Ventilateurs</a>
+          <a href="products.html?category=bouilliores" class="nav-link">Bouilloires</a>
+          <a href="products.html?category=accessories" class="nav-link">Cuisine</a>
+          <a href="cart.html" class="nav-link">Panier</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="container section-padding" style="padding-top: 24px;">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <a href="index.html">Accueil</a>
+      <span class="breadcrumb-separator">/</span>
+      <span class="current" id="breadcrumb-current">Boutique</span>
+    </div>
+
+    <!-- Page Title -->
+    <div style="margin-bottom: 20px;">
+      <h1 class="section-title" style="font-size: 24px;">Catalogue Électroménager</h1>
+      <p style="color: var(--text-muted); font-size: 13.5px; margin-top: 4px;">Trouvez des appareils de qualité adaptés à votre foyer</p>
+    </div>
+
+    <!-- Layout -->
+    <div class="products-layout">
+
+      <!-- SIDEBAR FILTERS -->
+      <aside class="filter-sidebar">
+        <!-- Search -->
+        <div class="filter-group">
+          <h3 class="filter-title">Recherche</h3>
+          <div class="search-bar-wrapper" style="max-width: 100%;">
+            <input type="text" id="search-box" class="search-input" style="padding: 10px 40px 10px 14px;" placeholder="Ex: Smart, Roch...">
+            <svg class="search-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="filter-group">
+          <h3 class="filter-title">Catégories</h3>
+          <div class="filter-options" id="category-filters">
+            <label class="checkbox-label">
+              <input type="checkbox" value="refrigerators" class="category-checkbox"> Réfrigérateurs
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" value="freezers" class="category-checkbox"> Congélateurs
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" value="washing_machines" class="category-checkbox"> Machines à Laver
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" value="ventilateurs" class="category-checkbox"> Ventilateurs
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" value="bouilliores" class="category-checkbox"> Bouilloires
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" value="accessories" class="category-checkbox"> Électroménager Cuisine
+            </label>
+          </div>
+        </div>
+
+        <!-- Budget -->
+        <div class="filter-group">
+          <h3 class="filter-title">Budget (FCFA)</h3>
+          <div class="price-range-inputs">
+            <div>
+              <label style="font-size: 11px; color: var(--text-muted); display:block; margin-bottom:4px;">Min</label>
+              <input type="number" id="price-min" value="0" min="0">
+            </div>
+            <div style="margin-top: 18px; color: var(--text-muted);">–</div>
+            <div>
+              <label style="font-size: 11px; color: var(--text-muted); display:block; margin-bottom:4px;">Max</label>
+              <input type="number" id="price-max" value="1000000" min="0">
+            </div>
+          </div>
+        </div>
+
+        <!-- Reset -->
+        <button id="btn-reset-filters" class="btn btn-secondary" style="width: 100%; padding: 10px; font-size: 13px;">
+          Effacer les Filtres
+        </button>
+      </aside>
+
+      <!-- PRODUCTS SECTION -->
+      <section>
+        <!-- Toolbar -->
+        <div class="products-toolbar">
+          <span class="products-count" id="results-count">Chargement...</span>
+          <div class="sort-wrapper">
+            <label for="sort-select">Trier par :</label>
+            <select id="sort-select" class="sort-select">
+              <option value="default">Recommandé</option>
+              <option value="price-asc">Prix croissant</option>
+              <option value="price-desc">Prix décroissant</option>
+              <option value="rating">Mieux notés</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Grid -->
+        <div class="grid grid-3" id="products-catalog-grid"></div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="catalog-empty-state" style="display: none;">
+          <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          <h3>Aucun produit trouvé</h3>
+          <p>Essayez de modifier vos critères de recherche ou d'effacer les filtres.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" style="margin-top: 48px;">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="footer-logo">NBS</a>
+          <p class="footer-desc">Votre boutique de référence pour l'électroménager à Dakar.</p>
+          <div class="footer-socials">
+            <a href="https://www.facebook.com/profile.php?id=100089895192384" class="social-link" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="https://wa.me/221777211987" class="social-link" target="_blank" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Nos Produits</h3>
+          <ul class="footer-links">
+            <li><a href="products.html?category=refrigerators">Réfrigérateurs</a></li>
+            <li><a href="products.html?category=freezers">Congélateurs</a></li>
+            <li><a href="products.html?category=washing_machines">Machines à Laver</a></li>
+            <li><a href="products.html?category=ventilateurs">Ventilateurs</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Liens Utiles</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="products.html">Catalogue</a></li>
+            <li><a href="cart.html">Mon Panier</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact &amp; Localisation</h3>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <span>Parcelle Assainie Unité 26, côté Poste Santé, Dakar</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            <span>+221 77 721 19 87</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <span>nbselectro@gmail.com</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 NBS. Tous droits réservés.</p>
+        <p>Paiement sécurisé à la livraison</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- SCRIPTS -->
+  <script src="js/products.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.getElementById('mobile-toggle').addEventListener('click', () => {
+      document.getElementById('nav-menu').classList.toggle('active');
+    });
+
+    function handleHeaderSearch() {
+      const q = document.getElementById('header-search-input').value.trim();
+      if (q) {
+        document.getElementById('search-box').value = q;
+        filters.search = q;
+        renderCatalog();
+      }
+    }
+    document.getElementById('header-search-input').addEventListener('keypress', e => {
+      if (e.key === 'Enter') handleHeaderSearch();
+    });
+
+    const filters = { search: '', categories: [], priceMin: 0, priceMax: 1000000, sortBy: 'default' };
+
+    const grid = document.getElementById('products-catalog-grid');
+    const emptyState = document.getElementById('catalog-empty-state');
+    const resultsCount = document.getElementById('results-count');
+    const searchBox = document.getElementById('search-box');
+    const priceMinInput = document.getElementById('price-min');
+    const priceMaxInput = document.getElementById('price-max');
+    const sortSelect = document.getElementById('sort-select');
+    const resetBtn = document.getElementById('btn-reset-filters');
+    const categoryCheckboxes = document.querySelectorAll('.category-checkbox');
+
+    function parseQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      const catParam = params.get('category');
+      const searchParam = params.get('search');
+      if (catParam) {
+        filters.categories = [catParam];
+        categoryCheckboxes.forEach(cb => { if (cb.value === catParam) cb.checked = true; });
+        document.getElementById('breadcrumb-current').textContent = catParam.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
+      }
+      if (searchParam) {
+        filters.search = searchParam;
+        searchBox.value = searchParam;
+      }
+    }
+
+    function buildCard(product) {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      let stars = '';
+      const full = Math.floor(product.rating);
+      for (let i = 0; i < 5; i++) stars += i < full ? '★' : '☆';
+      const imgSrc = product.image || '';
+      const price = typeof app !== 'undefined' ? app.formatPrice(product.price) : product.price.toLocaleString('fr-FR') + ' FCFA';
+      card.innerHTML = `
+        ${product.featured ? '<span class="product-badge">Vedette</span>' : ''}
+        <div class="product-image-box">
+          <a href="product-detail.html?id=${product.id}">
+            <img src="${imgSrc}" alt="${product.name}" loading="lazy" onerror="this.style.opacity='0.2'">
+          </a>
+        </div>
+        <div class="product-details">
+          <span class="product-cat">${product.categoryDisplay}</span>
+          <a href="product-detail.html?id=${product.id}"><h3 class="product-name">${product.name}</h3></a>
+          <div class="product-rating">
+            <span>${stars}</span>
+            <span style="color:#666;font-size:12px;">${product.rating}</span>
+            <span class="reviews">(${product.reviewsCount} avis)</span>
+          </div>
+          <div class="product-price-row">
+            <span class="product-price">${price}</span>
+            <button class="btn-add-cart-icon" onclick="app && app.addToCart('${product.id}', 1)" title="Ajouter au panier">
+              <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            </button>
+          </div>
+        </div>
+      `;
+      return card;
+    }
+
+    function renderCatalog() {
+      let filtered = PRODUCTS.filter(product => {
+        if (filters.search) {
+          const q = filters.search.toLowerCase();
+          if (!product.name.toLowerCase().includes(q) && !product.description.toLowerCase().includes(q) && !product.categoryDisplay.toLowerCase().includes(q)) return false;
+        }
+        if (filters.categories.length > 0 && !filters.categories.includes(product.category)) return false;
+        if (product.price < filters.priceMin || product.price > filters.priceMax) return false;
+        return true;
+      });
+
+      if (filters.sortBy === 'price-asc') filtered.sort((a, b) => a.price - b.price);
+      else if (filters.sortBy === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+      else if (filters.sortBy === 'rating') filtered.sort((a, b) => b.rating - a.rating);
+      else filtered.sort((a, b) => (a.featured && !b.featured ? -1 : !a.featured && b.featured ? 1 : 0));
+
+      resultsCount.textContent = `${filtered.length} ${filtered.length > 1 ? 'produits trouvés' : 'produit trouvé'}`;
+      grid.innerHTML = '';
+
+      if (filtered.length === 0) {
+        grid.style.display = 'none';
+        emptyState.style.display = 'block';
+        return;
+      }
+      grid.style.display = 'grid';
+      emptyState.style.display = 'none';
+      filtered.forEach(p => grid.appendChild(buildCard(p)));
+    }
+
+    function setupFilterEvents() {
+      searchBox.addEventListener('input', e => { filters.search = e.target.value; renderCatalog(); });
+      categoryCheckboxes.forEach(cb => {
+        cb.addEventListener('change', () => {
+          filters.categories = Array.from(categoryCheckboxes).filter(c => c.checked).map(c => c.value);
+          renderCatalog();
+        });
+      });
+      priceMinInput.addEventListener('input', e => { filters.priceMin = Number(e.target.value) || 0; renderCatalog(); });
+      priceMaxInput.addEventListener('input', e => { filters.priceMax = Number(e.target.value) || 1000000; renderCatalog(); });
+      sortSelect.addEventListener('change', e => { filters.sortBy = e.target.value; renderCatalog(); });
+      resetBtn.addEventListener('click', () => {
+        Object.assign(filters, { search: '', categories: [], priceMin: 0, priceMax: 1000000, sortBy: 'default' });
+        searchBox.value = ''; priceMinInput.value = 0; priceMaxInput.value = 1000000; sortSelect.value = 'default';
+        categoryCheckboxes.forEach(c => c.checked = false);
+        window.history.replaceState({}, document.title, window.location.pathname);
+        renderCatalog();
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      parseQueryParams();
+      setupFilterEvents();
+      renderCatalog();
+    });
+  </script>
+</body>
+</html>
