@@ -1644,3 +1644,283 @@ button,input,select,textarea { font-family: inherit; font-size: inherit; color: 
 ::-webkit-scrollbar-track { background: var(--bg-gray); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+/* ==========================================================================
+   MOBILE & RESPONSIVE REFINEMENTS (NBS SHOP REDESIGN)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  /* 1. Top Bar Optimization */
+  .top-bar {
+    padding: 6px 0;
+    font-size: 11.5px;
+  }
+  .top-bar-inner {
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    text-align: center;
+  }
+  .top-bar-left span:nth-child(2),
+  .top-bar-left span:nth-child(3) {
+    display: none !important; /* Hide secondary top-bar texts to fit on mobile */
+  }
+  .top-bar-right {
+    display: none !important; /* Hide duplicate links */
+  }
+
+  /* 2. Responsive Header Row wrapping */
+  .header-inner {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 10px 16px;
+  }
+  .logo {
+    order: 1;
+    font-size: 22px;
+  }
+  .header-actions {
+    order: 2;
+    margin-left: auto;
+    gap: 12px;
+  }
+  .header-search {
+    order: 3;
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-top: 4px;
+  }
+  .header-search input {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  .header-search button {
+    padding: 8px 14px;
+    font-size: 0; /* Hide text 'Rechercher' on mobile, show only icon */
+  }
+  .header-search button svg {
+    margin: 0;
+    width: 18px;
+    height: 18px;
+  }
+
+  /* 3. Floating Mobile Cart Badge */
+  .cart-icon-wrapper {
+    position: relative;
+    padding: 8px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-circle);
+    background: var(--primary-light);
+    color: var(--primary);
+  }
+  .cart-icon-wrapper svg {
+    fill: var(--primary) !important;
+    margin: 0;
+    width: 22px;
+    height: 22px;
+  }
+  .cart-info {
+    position: static;
+  }
+  .cart-label {
+    display: none !important;
+  }
+  .cart-count-text {
+    font-size: 0 !important; /* Hide text ' articles' */
+  }
+  .cart-badge, #cart-badge-count {
+    display: flex !important;
+    position: absolute !important;
+    top: -5px !important;
+    right: -5px !important;
+    background: var(--primary) !important;
+    color: #fff !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    min-width: 18px !important;
+    height: 18px !important;
+    border-radius: var(--radius-circle) !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 2.5px solid #fff !important;
+    padding: 0 !important;
+  }
+
+  /* 4. Hamburger button display */
+  .mobile-nav-toggle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-gray);
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-circle);
+  }
+
+  /* 5. Sticky Bottom Action Buttons in Product Details Page */
+  .detail-actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 10px 16px;
+    box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
+    z-index: 1000;
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 8px;
+    border-top: 1px solid var(--border);
+  }
+  .detail-actions .btn {
+    flex: 1;
+    padding: 12px 14px;
+    font-size: 13.5px;
+    margin: 0;
+  }
+  body.has-sticky-actions {
+    padding-bottom: 72px; /* Prevent footer text collision */
+  }
+}
+
+@media (max-width: 600px) {
+  /* 6. Card-based Cart List on Mobile (prevents table overflow) */
+  .cart-table-header {
+    display: none !important; /* Hide grid headers on mobile */
+  }
+  .cart-item {
+    display: grid !important;
+    grid-template-columns: 80px 1fr !important;
+    grid-template-rows: auto auto auto auto !important;
+    gap: 6px 12px !important;
+    padding: 16px !important;
+    position: relative !important;
+    align-items: start !important;
+    border-bottom: 1.5px solid var(--border-light);
+  }
+  .cart-item-info {
+    grid-column: 1 / -1 !important;
+    margin-bottom: 6px;
+  }
+  .cart-item-img {
+    grid-column: 1 !important;
+    grid-row: 2 / span 3 !important;
+    width: 72px !important;
+    height: 72px !important;
+  }
+  .cart-item-price {
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    font-size: 13.5px !important;
+  }
+  .cart-item-price::before {
+    content: "Prix : ";
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+  /* Quantity wrapper */
+  .cart-item > div:nth-child(3) {
+    grid-column: 2 !important;
+    grid-row: 3 !important;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 2px;
+  }
+  .cart-item-total {
+    grid-column: 2 !important;
+    grid-row: 4 !important;
+    font-size: 14.5px !important;
+    color: var(--primary) !important;
+  }
+  .cart-item-total::before {
+    content: "Total : ";
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+  .cart-remove-btn {
+    position: absolute !important;
+    top: 16px !important;
+    right: 16px !important;
+    background: #fee2e2 !important;
+    color: var(--primary) !important;
+  }
+  .cart-layout {
+    gap: 16px;
+  }
+  
+  /* 7. Grid Padding refinements */
+  .container {
+    padding: 0 16px;
+  }
+  .grid {
+    gap: 12px;
+  }
+  .section-padding {
+    padding: 32px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  /* 8. Extra Compact Product Cards on Mobile (2 columns fit perfectly) */
+  .product-image-box {
+    height: 140px !important;
+    padding: 8px !important;
+  }
+  .product-details {
+    padding: 10px 8px !important;
+  }
+  .product-name {
+    font-size: 12.5px !important;
+    line-height: 1.4 !important;
+    margin-bottom: 4px !important;
+    height: 36px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .product-cat {
+    font-size: 10.5px !important;
+    margin-bottom: 2px !important;
+  }
+  .product-rating {
+    font-size: 11px !important;
+    gap: 2px !important;
+    margin-bottom: 6px !important;
+  }
+  .product-rating .reviews {
+    display: none; /* Hide reviews count on very small screens to fit star rating */
+  }
+  .product-price {
+    font-size: 13.5px !important;
+  }
+  .btn-add-cart-icon {
+    width: 26px !important;
+    height: 26px !important;
+  }
+  .btn-add-cart-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  /* 9. Hero banner button stacking */
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    padding: 0 16px;
+  }
+  .hero-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .hero-title {
+    font-size: 24px !important;
+    line-height: 1.3 !important;
+  }
+}
+
