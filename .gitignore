@@ -12,3 +12,6 @@ scratch/
 *.log
 .tempmediaStorage/
 *transcript*.jsonl
+
+.vercel
+.env*

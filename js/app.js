@@ -37,12 +37,9 @@ class ECommerceApp {
   }
 
   // Add item to cart
-  addToCart(productId, quantity = 1) {
-    // Check if product exists in products.js list (PRODUCTS is loaded globally)
-    if (typeof PRODUCTS === 'undefined') {
-      console.error("PRODUCTS database is not loaded.");
-      return;
-    }
+  async addToCart(productId, quantity = 1) {
+    // Charge les produits depuis la base de données si ce n'est pas déjà fait
+    await loadProducts();
 
     const product = PRODUCTS.find(p => p.id === productId);
     if (!product) {
@@ -153,7 +150,7 @@ class ECommerceApp {
 
     const toast = document.createElement('div');
     toast.className = `toast toast-${type}`;
-    
+
     // Choose icon
     const icon = type === "success" ? "✓" : "⚠";
     toast.innerHTML = `
