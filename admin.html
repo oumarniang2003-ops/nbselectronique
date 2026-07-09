@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration - NBS</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #d32f2f;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 6px 0 14px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 13px;
+            color: #333;
+        }
+
+        button {
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 8px;
+        }
+
+        button:hover {
+            background: #b71c1c;
+        }
+
+        button.secondary {
+            background: #666;
+        }
+
+        button.secondary:hover {
+            background: #444;
+        }
+
+        #login-screen {
+            max-width: 400px;
+            margin: 100px auto;
+        }
+
+        .product-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .product-row img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+            background: #eee;
+        }
+
+        .product-row .info {
+            flex: 1;
+        }
+
+        .product-row .info strong {
+            display: block;
+        }
+
+        .product-row .info span {
+            color: #777;
+            font-size: 13px;
+        }
+
+        .msg {
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 14px;
+            font-size: 14px;
+        }
+
+        .msg.error {
+            background: #fdecea;
+            color: #b71c1c;
+        }
+
+        .msg.success {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #image-preview {
+            max-width: 150px;
+            margin-top: 8px;
+            border-radius: 4px;
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 600px) {
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="login-screen" class="card">
+        <h1>Administration NBS</h1>
+        <div id="login-msg"></div>
+        <label>Mot de passe</label>
+        <input type="password" id="password-input" placeholder="Entrez le mot de passe">
+        <button onclick="login()">Se connecter</button>
+    </div>
+
+    <div id="admin-screen" class="container hidden">
+        <h1>Administration NBS</h1>
+        <button class="secondary" onclick="logout()">Déconnexion</button>
+
+        <div class="card">
+            <h2 id="form-title">Ajouter un produit</h2>
+            <div id="form-msg"></div>
+
+            <input type="hidden" id="edit-id">
+
+            <div class="two-col">
+                <div>
+                    <label>Identifiant unique (ex: smart-str-345m)</label>
+                    <input type="text" id="f-id" placeholder="identifiant-unique">
+                </div>
+                <div>
+                    <label>Nom du produit</label>
+                    <input type="text" id="f-name" placeholder="Réfrigérateur Double Porte...">
+                </div>
+            </div>
+
+            <div class="two-col">
+                <div>
+                    <label>Catégorie (technique, ex: refrigerators)</label>
+                    <select id="f-category">
+                        <option value="refrigerators">refrigerators</option>
+                        <option value="freezers">freezers</option>
+                        <option value="washing_machines">washing_machines</option>
+                        <option value="ventilateurs">ventilateurs</option>
+                        <option value="bouilliores">bouilliores</option>
+                        <option value="accessories">accessories</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Catégorie affichée (ex: Réfrigérateurs)</label>
+                    <input type="text" id="f-category-display" placeholder="Réfrigérateurs">
+                </div>
+            </div>
+
+            <div class="two-col">
+                <div>
+                    <label>Prix (FCFA)</label>
+                    <input type="number" id="f-price" placeholder="150000">
+                </div>
+                <div>
+                    <label>Note (0 à 5)</label>
+                    <input type="number" step="0.1" min="0" max="5" id="f-rating" placeholder="4.5">
+                </div>
+            </div>
+
+            <label>Description</label>
+            <textarea id="f-description" rows="3" placeholder="Description du produit..."></textarea>
+
+            <label>Caractéristiques (une par ligne)</label>
+            <textarea id="f-features" rows="4" placeholder="Double porte&#10;Technologie No Frost&#10;..."></textarea>
+
+            <label><input type="checkbox" id="f-featured" style="width:auto;display:inline-block;"> Produit
+                vedette</label>
+
+            <label>Photo du produit</label>
+            <input type="file" id="f-image-file" accept="image/*" onchange="previewImage()">
+            <img id="image-preview" class="hidden">
+            <input type="hidden" id="f-image-url">
+
+            <div style="margin-top: 16px;">
+                <button onclick="saveProduct()">Enregistrer</button>
+                <button class="secondary" onclick="resetForm()">Annuler</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Produits existants (<span id="product-count">0</span>)</h2>
+            <div id="products-list"></div>
+        </div>
+    </div>
+
+    <script>
+        let adminPassword = '';
+        let allProducts = [];
+
+        function showMsg(elId, text, type) {
+            const el = document.getElementById(elId);
+            el.innerHTML = `<div class="msg ${type}">${text}</div>`;
+            setTimeout(() => { el.innerHTML = ''; }, 4000);
+        }
+
+        async function login() {
+            const password = document.getElementById('password-input').value;
+            try {
+                const res = await fetch('/api/admin-login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password })
+                });
+                const data = await res.json();
+                if (data.ok) {
+                    adminPassword = password;
+                    sessionStorage.setItem('adminPassword', password);
+                    document.getElementById('login-screen').classList.add('hidden');
+                    document.getElementById('admin-screen').classList.remove('hidden');
+                    loadProductsList();
+                } else {
+                    showMsg('login-msg', 'Mot de passe incorrect', 'error');
+                }
+            } catch (err) {
+                showMsg('login-msg', 'Erreur de connexion : ' + err.message, 'error');
+            }
+        }
+
+        function logout() {
+            adminPassword = '';
+            sessionStorage.removeItem('adminPassword');
+            document.getElementById('login-screen').classList.remove('hidden');
+            document.getElementById('admin-screen').classList.add('hidden');
+            document.getElementById('password-input').value = '';
+        }
+
+        // Reconnexion automatique si déjà connecté dans cette session
+        window.addEventListener('DOMContentLoaded', () => {
+            const saved = sessionStorage.getItem('adminPassword');
+            if (saved) {
+                adminPassword = saved;
+                document.getElementById('login-screen').classList.add('hidden');
+                document.getElementById('admin-screen').classList.remove('hidden');
+                loadProductsList();
+            }
+        });
+
+        async function loadProductsList() {
+            try {
+                const res = await fetch('/api/admin-products', {
+                    headers: { 'x-admin-password': adminPassword }
+                });
+                if (res.status === 401) { logout(); return; }
+                allProducts = await res.json();
+                renderProductsList();
+            } catch (err) {
+                showMsg('form-msg', 'Erreur de chargement : ' + err.message, 'error');
+            }
+        }
+
+        function renderProductsList() {
+            document.getElementById('product-count').textContent = allProducts.length;
+            const container = document.getElementById('products-list');
+            container.innerHTML = '';
+            allProducts.forEach(p => {
+                const row = document.createElement('div');
+                row.className = 'product-row';
+                row.innerHTML = `
+      <img src="${p.image || ''}" onerror="this.style.display='none'">
+      <div class="info">
+        <strong>${p.name}</strong>
+        <span>${p.category_display || p.category} · ${Number(p.price).toLocaleString()} FCFA</span>
+      </div>
+      <button onclick="editProduct('${p.id}')">Modifier</button>
+      <button class="secondary" onclick="deleteProduct('${p.id}')">Supprimer</button>
+    `;
+                container.appendChild(row);
+            });
+        }
+
+        function editProduct(id) {
+            const p = allProducts.find(x => x.id === id);
+            if (!p) return;
+            document.getElementById('form-title').textContent = 'Modifier le produit';
+            document.getElementById('edit-id').value = p.id;
+            document.getElementById('f-id').value = p.id;
+            document.getElementById('f-id').disabled = true;
+            document.getElementById('f-name').value = p.name || '';
+            document.getElementById('f-category').value = p.category || 'refrigerators';
+            document.getElementById('f-category-display').value = p.category_display || '';
+            document.getElementById('f-price').value = p.price || '';
+            document.getElementById('f-rating').value = p.rating || '';
+            document.getElementById('f-description').value = p.description || '';
+            const features = Array.isArray(p.features) ? p.features : [];
+            document.getElementById('f-features').value = features.join('\n');
+            document.getElementById('f-featured').checked = !!p.featured;
+            document.getElementById('f-image-url').value = p.image || '';
+            const preview = document.getElementById('image-preview');
+            if (p.image) {
+                preview.src = p.image;
+                preview.classList.remove('hidden');
+            } else {
+                preview.classList.add('hidden');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function resetForm() {
+            document.getElementById('form-title').textContent = 'Ajouter un produit';
+            document.getElementById('edit-id').value = '';
+            document.getElementById('f-id').value = '';
+            document.getElementById('f-id').disabled = false;
+            document.getElementById('f-name').value = '';
+            document.getElementById('f-category').value = 'refrigerators';
+            document.getElementById('f-category-display').value = '';
+            document.getElementById('f-price').value = '';
+            document.getElementById('f-rating').value = '';
+            document.getElementById('f-description').value = '';
+            document.getElementById('f-features').value = '';
+            document.getElementById('f-featured').checked = false;
+            document.getElementById('f-image-url').value = '';
+            document.getElementById('f-image-file').value = '';
+            document.getElementById('image-preview').classList.add('hidden');
+        }
+
+        function previewImage() {
+            const file = document.getElementById('f-image-file').files[0];
+            if (!file) return;
+            const preview = document.getElementById('image-preview');
+            preview.src = URL.createObjectURL(file);
+            preview.classList.remove('hidden');
+        }
+
+        async function uploadImageIfNeeded() {
+            const file = document.getElementById('f-image-file').files[0];
+            if (!file) {
+                return document.getElementById('f-image-url').value || '';
+            }
+            const res = await fetch('/api/upload', {
+                method: 'POST',
+                headers: {
+                    'x-admin-password': adminPassword,
+                    'x-filename': file.name,
+                    'Content-Type': file.type || 'application/octet-stream'
+                },
+                body: file
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error || 'Échec de l\'upload');
+            return data.url;
+        }
+
+        async function saveProduct() {
+            const isEdit = !!document.getElementById('edit-id').value;
+            const id = document.getElementById('f-id').value.trim();
+            const name = document.getElementById('f-name').value.trim();
+            const price = parseFloat(document.getElementById('f-price').value);
+
+            if (!id || !name || !price) {
+                showMsg('form-msg', 'Identifiant, nom et prix sont obligatoires.', 'error');
+                return;
+            }
+
+            try {
+                showMsg('form-msg', 'Enregistrement en cours...', 'success');
+                const imageUrl = await uploadImageIfNeeded();
+
+                const payload = {
+                    id,
+                    name,
+                    category: document.getElementById('f-category').value,
+                    category_display: document.getElementById('f-category-display').value,
+                    price,
+                    rating: parseFloat(document.getElementById('f-rating').value) || 0,
+                    reviews_count: 0,
+                    image: imageUrl,
+                    description: document.getElementById('f-description').value,
+                    features: document.getElementById('f-features').value.split('\n').map(s => s.trim()).filter(Boolean),
+                    specs: {},
+                    featured: document.getElementById('f-featured').checked
+                };
+
+                const res = await fetch('/api/admin-products', {
+                    method: isEdit ? 'PUT' : 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-admin-password': adminPassword
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || 'Erreur inconnue');
+
+                showMsg('form-msg', 'Produit enregistré avec succès !', 'success');
+                resetForm();
+                loadProductsList();
+            } catch (err) {
+                showMsg('form-msg', 'Erreur : ' + err.message, 'error');
+            }
+        }
+
+        async function deleteProduct(id) {
+            if (!confirm('Supprimer ce produit définitivement ?')) return;
+            try {
+                const res = await fetch('/api/admin-products?id=' + encodeURIComponent(id), {
+                    method: 'DELETE',
+                    headers: { 'x-admin-password': adminPassword }
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || 'Erreur inconnue');
+                loadProductsList();
+            } catch (err) {
+                showMsg('form-msg', 'Erreur suppression : ' + err.message, 'error');
+            }
+        }
+    </script>
+
+</body>
+
+</html>
