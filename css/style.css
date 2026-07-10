@@ -981,6 +981,10 @@ button,input,select,textarea { font-family: inherit; font-size: inherit; color: 
 
 @media (max-width: 900px) {
   .products-layout { grid-template-columns: 1fr; }
+  .filter-sidebar {
+    position: static;
+    top: auto;
+  }
 }
 
 /* Filter Sidebar */
