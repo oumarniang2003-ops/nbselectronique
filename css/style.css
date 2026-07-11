@@ -1354,11 +1354,6 @@ textarea {
   .products-layout {
     grid-template-columns: 1fr;
   }
-
-  .filter-sidebar {
-    position: static;
-    top: auto;
-  }
 }
 
 /* Filter Sidebar */
@@ -1369,6 +1364,13 @@ textarea {
   padding: 20px;
   position: sticky;
   top: 80px;
+}
+
+@media (max-width: 900px) {
+  .filter-sidebar {
+    position: static;
+    top: auto;
+  }
 }
 
 .filter-title {
