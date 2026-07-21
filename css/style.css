@@ -898,7 +898,7 @@ textarea {
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  padding: 16px 8px;
+  padding: 14px 8px;
   background: var(--bg-white);
   border: 1.5px solid var(--border-light);
   border-radius: var(--radius-md);
@@ -914,26 +914,46 @@ textarea {
 }
 
 .category-icon-box {
-  width: 52px;
-  height: 52px;
-  background: var(--primary-light);
-  border-radius: var(--radius-sm);
+  width: 60px;
+  height: 60px;
+  background: #f8f9fa;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 26px;
+  transition: var(--transition);
+  overflow: hidden;
+  padding: 6px;
+  border: 1px solid var(--border-light);
+}
+
+.category-icon-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
   transition: var(--transition);
 }
 
 .category-card:hover .category-icon-box {
-  background: var(--primary);
-  transform: scale(1.08);
+  border-color: var(--primary);
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(229, 57, 53, 0.15);
+}
+
+.category-card:hover .category-icon-box img {
+  transform: scale(1.12);
 }
 
 .category-info h3 {
   font-size: 12px;
   font-weight: 600;
   color: var(--text-dark);
+  transition: var(--transition-fast);
+}
+
+.category-card:hover .category-info h3 {
+  color: var(--primary);
 }
 
 .category-info p {
