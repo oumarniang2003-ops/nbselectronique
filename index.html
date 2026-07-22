@@ -89,22 +89,83 @@
     <!-- NAV BAR -->
     <div class="nav-bar">
       <div class="container nav-bar-inner">
-        <button class="nav-categories-btn" onclick="window.location.href='products.html'">
-          <svg viewBox="0 0 24 24">
-            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
-          </svg>
-          Toutes les Catégories
-        </button>
+        <div class="categories-dropdown-wrapper">
+          <button class="nav-categories-btn" onclick="window.location.href='products.html'">
+            <svg viewBox="0 0 24 24">
+              <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+            </svg>
+            Toutes les Catégories
+          </button>
+          <div class="categories-dropdown-menu">
+            <ul class="vertical-categories">
+              <li class="category-item">
+                <a href="products.html" class="category-link">
+                  <span class="category-icon">🔥</span>
+                  <span class="category-text">Tendances & Promos</span>
+                </a>
+              </li>
+              <li class="category-item">
+                <a href="products.html?group=electromenager" class="category-link">
+                  <span class="category-icon">⚡</span>
+                  <span class="category-text">Électroménager</span>
+                  <span class="arrow-right">▶</span>
+                </a>
+                <div class="subcategory-flyout">
+                  <div class="submenu-title">Électroménager</div>
+                  <ul class="submenu-list">
+                    <li><a href="products.html?category=refrigerators">Réfrigérateurs</a></li>
+                    <li><a href="products.html?category=freezers">Congélateurs</a></li>
+                    <li><a href="products.html?category=washing_machines">Machines à Laver</a></li>
+                    <li><a href="products.html?category=ventilateurs">Ventilateurs</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="category-item">
+                <a href="products.html?group=cuisine" class="category-link">
+                  <span class="category-icon">🍳</span>
+                  <span class="category-text">Cuisine</span>
+                  <span class="arrow-right">▶</span>
+                </a>
+                <div class="subcategory-flyout">
+                  <div class="submenu-title">Cuisine</div>
+                  <ul class="submenu-list">
+                    <li><a href="products.html?category=accessories">Micro-ondes & Cuisinières</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="category-item">
+                <a href="televisions.html" class="category-link">
+                  <span class="category-icon">📺</span>
+                  <span class="category-text">Télévisions</span>
+                  <span class="arrow-right">▶</span>
+                </a>
+                <div class="subcategory-flyout">
+                  <div class="submenu-title">Téléviseurs</div>
+                  <ul class="submenu-list">
+                    <li><a href="televisions.html">Tous les Téléviseurs</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="category-item">
+                <a href="products.html?group=accessoires" class="category-link">
+                  <span class="category-icon">🔌</span>
+                  <span class="category-text">Accessoires</span>
+                  <span class="arrow-right">▶</span>
+                </a>
+                <div class="subcategory-flyout">
+                  <div class="submenu-title">Accessoires</div>
+                  <ul class="submenu-list">
+                    <li><a href="products.html?category=bouilliores">Petits Appareils & Audio</a></li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
         <nav class="nav-menu" id="nav-menu">
           <a href="index.html" class="nav-link active">Accueil</a>
-          <a href="products.html?category=refrigerators" class="nav-link">Réfrigérateurs</a>
-          <a href="products.html?category=freezers" class="nav-link">Congélateurs</a>
+          <a href="products.html" class="nav-link">Boutique</a>
           <a href="televisions.html" class="nav-link">Télévisions</a>
-          <a href="products.html?category=washing_machines" class="nav-link">Machines à Laver</a>
-          <a href="products.html?category=ventilateurs" class="nav-link">Ventilateurs</a>
-          <a href="products.html?category=bouilliores" class="nav-link">Accessoires</a>
-          <a href="products.html?category=accessories" class="nav-link">Cuisine <span
-              class="nav-link-badge">NEW</span></a>
           <a href="cart.html" class="nav-link">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
               <path
@@ -117,31 +178,101 @@
     </div>
   </header>
 
-  <!-- HERO BANNER -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-content">
-        <span class="hero-tag">🔥 Promotions d'été à Dakar</span>
-        <h1 class="hero-title">L'Électroménager de Qualité<br>Livré Chez Vous</h1>
-        <p class="hero-description">
-          Réfrigérateurs, machines à laver, ventilateurs, bouilloires…<br>
-          Payez à la livraison. Livraison rapide dans tout Dakar.
-        </p>
-        <div class="hero-buttons">
-          <a href="products.html" class="btn btn-white btn-lg">
-            <svg class="btn-icon" viewBox="0 0 24 24">
-              <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" />
-            </svg>
-            Voir le Catalogue
+  <!-- HERO & CATEGORIES CONTAINER -->
+  <div class="container home-hero-layout">
+    <!-- Category Sidebar (Always Open on Homepage) -->
+    <aside class="category-sidebar-home">
+      <ul class="vertical-categories">
+        <li class="category-item">
+          <a href="products.html" class="category-link">
+            <span class="category-icon">🔥</span>
+            <span class="category-text">Tendances & Promos</span>
           </a>
-          <a href="#featured" class="btn btn-outline-white btn-lg">Offres Vedettes</a>
+        </li>
+        <li class="category-item">
+          <a href="products.html?group=electromenager" class="category-link">
+            <span class="category-icon">⚡</span>
+            <span class="category-text">Électroménager</span>
+            <span class="arrow-right">▶</span>
+          </a>
+          <div class="subcategory-flyout">
+            <div class="submenu-title">Électroménager</div>
+            <ul class="submenu-list">
+              <li><a href="products.html?category=refrigerators">Réfrigérateurs</a></li>
+              <li><a href="products.html?category=freezers">Congélateurs</a></li>
+              <li><a href="products.html?category=washing_machines">Machines à Laver</a></li>
+              <li><a href="products.html?category=ventilateurs">Ventilateurs</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="category-item">
+          <a href="products.html?group=cuisine" class="category-link">
+            <span class="category-icon">🍳</span>
+            <span class="category-text">Cuisine</span>
+            <span class="arrow-right">▶</span>
+          </a>
+          <div class="subcategory-flyout">
+            <div class="submenu-title">Cuisine</div>
+            <ul class="submenu-list">
+              <li><a href="products.html?category=accessories">Micro-ondes & Cuisinières</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="category-item">
+          <a href="televisions.html" class="category-link">
+            <span class="category-icon">📺</span>
+            <span class="category-text">Télévisions</span>
+            <span class="arrow-right">▶</span>
+          </a>
+          <div class="subcategory-flyout">
+            <div class="submenu-title">Téléviseurs</div>
+            <ul class="submenu-list">
+              <li><a href="televisions.html">Tous les Téléviseurs</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="category-item">
+          <a href="products.html?group=accessoires" class="category-link">
+            <span class="category-icon">🔌</span>
+            <span class="category-text">Accessoires</span>
+            <span class="arrow-right">▶</span>
+          </a>
+          <div class="subcategory-flyout">
+            <div class="submenu-title">Accessoires</div>
+            <ul class="submenu-list">
+              <li><a href="products.html?category=bouilliores">Petits Appareils & Audio</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- HERO BANNER -->
+    <section class="hero">
+      <div class="hero-grid" style="padding: 0 20px;">
+        <div class="hero-content">
+          <span class="hero-tag">🔥 Promotions d'été à Dakar</span>
+          <h1 class="hero-title">L'Électroménager de Qualité<br>Livré Chez Vous</h1>
+          <p class="hero-description">
+            Réfrigérateurs, machines à laver, ventilateurs, bouilloires…<br>
+            Payez à la livraison. Livraison rapide dans tout Dakar.
+          </p>
+          <div class="hero-buttons">
+            <a href="products.html" class="btn btn-white btn-lg">
+              <svg class="btn-icon" viewBox="0 0 24 24">
+                <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" />
+              </svg>
+              Voir le Catalogue
+            </a>
+            <a href="#featured" class="btn btn-outline-white btn-lg">Offres Vedettes</a>
+          </div>
+        </div>
+        <div class="hero-image-container">
+          <img src="images/products/IMG-20250728-WA0010.jpg" alt="Réfrigérateur Roch disponible à Dakar">
         </div>
       </div>
-      <div class="hero-image-container">
-        <img src="images/products/IMG-20250728-WA0010.jpg" alt="Réfrigérateur Roch disponible à Dakar">
-      </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
   <!-- PROMO STRIP -->
   <div class="promo-strip">
