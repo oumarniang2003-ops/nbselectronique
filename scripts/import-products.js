@@ -261,8 +261,8 @@ const PRODUCTS = [
     {
         id: "enduro-fer-vapeur",
         name: "Fer à Repasser Vapeur Enduro",
-        category: "accessories",
-        categoryDisplay: "Électroménager Cuisine",
+        category: "bouilliores",
+        categoryDisplay: "Accessoires",
         price: 15000,
         rating: 4.6,
         reviewsCount: 36,
@@ -275,8 +275,8 @@ const PRODUCTS = [
     {
         id: "enduro-bouilloire",
         name: "Bouilloire Enduro Électrique Noire",
-        category: "accessories",
-        categoryDisplay: "Électroménager Cuisine",
+        category: "bouilliores",
+        categoryDisplay: "Accessoires",
         price: 15000,
         rating: 4.7,
         reviewsCount: 44,
