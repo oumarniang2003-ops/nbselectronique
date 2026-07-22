@@ -230,86 +230,107 @@
 
       <!-- Right: Summary & Form -->
       <div>
-        <!-- Summary Box -->
-        <div class="cart-summary">
-          <h2 class="cart-summary-title">Résumé de la Commande</h2>
+        <form id="checkout-form">
+          <!-- Summary Box -->
+          <div class="cart-summary">
+            <h2 class="cart-summary-title">Résumé de la Commande</h2>
 
-          <!-- Delivery Option Selector -->
-          <div class="delivery-options-container">
-            <div class="delivery-options-title">Option de livraison *</div>
-            <div class="delivery-options-selector">
-              <button type="button" id="delivery-pickup-btn" class="delivery-type-btn active" data-type="pickup">
-                <span class="btn-icon">🏪</span>
-                <span class="btn-label">Retrait magasin</span>
-                <span class="btn-desc">Gratuit</span>
-              </button>
-              <button type="button" id="delivery-home-btn" class="delivery-type-btn" data-type="delivery">
-                <span class="btn-icon">🛵</span>
-                <span class="btn-label">Livraison à domicile</span>
-                <span class="btn-desc">Frais variables</span>
-              </button>
+            <!-- Delivery Option Selector -->
+            <div class="delivery-options-container">
+              <div class="delivery-options-title">Option de livraison *</div>
+              <div class="delivery-options-selector">
+                <button type="button" id="delivery-pickup-btn" class="delivery-type-btn active" data-type="pickup">
+                  <span class="btn-icon">🏪</span>
+                  <span class="btn-label">Retrait magasin</span>
+                  <span class="btn-desc">Gratuit</span>
+                </button>
+                <button type="button" id="delivery-home-btn" class="delivery-type-btn" data-type="delivery">
+                  <span class="btn-icon">🛵</span>
+                  <span class="btn-label">Livraison à domicile</span>
+                  <span class="btn-desc">Frais variables</span>
+                </button>
+              </div>
             </div>
-          </div>
 
-          <div class="summary-row">
-            <span>Sous-total</span>
-            <span id="cart-subtotal-val" style="font-weight: 600;">0 FCFA</span>
-          </div>
-
-          <!-- Shipping Zone (conditionally shown) -->
-          <div id="shipping-zone-container" class="shipping-conditional-fields collapsed" style="padding: 14px 0; border-bottom: 1px solid var(--border-light);">
-            <label style="font-size: 13px; font-weight: 600; color: var(--text-dark); display:block; margin-bottom: 8px;">
-              Zone de livraison (Dakar) * :
-            </label>
-            <select id="shipping-zone-select" class="shipping-zone-select">
-              <option value="" disabled selected>Choisir mon quartier...</option>
-              <!-- Populated by JS -->
-            </select>
-          </div>
-
-          <div class="summary-row">
-            <span>Frais de livraison</span>
-            <span id="cart-shipping-val" style="color: var(--primary); font-weight: 600;">Gratuit (Retrait)</span>
-          </div>
-
-          <div class="summary-row total">
-            <span>Total Général</span>
-            <span class="amount" id="cart-total-val">0 FCFA</span>
-          </div>
-
-          <div style="background: var(--primary-light); border-radius: var(--radius-sm); padding: 10px 12px; font-size: 12.5px; color: var(--primary); margin: 12px 0; display: flex; gap: 8px; align-items: flex-start;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0; margin-top:1px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-            <span>Paiement à la livraison (Espèces, Wave ou Orange Money)</span>
-          </div>
-        </div>
-
-        <!-- Checkout Form -->
-        <div class="cart-summary" style="margin-top: 16px;">
-          <h2 class="cart-summary-title">Informations de Livraison</h2>
-          <form id="checkout-form">
-            <div class="checkout-form-group">
+            <!-- Client Info Form Fields -->
+            <div class="checkout-form-group" style="margin-top: 16px;">
               <label for="client-name">Nom complet *</label>
-              <input type="text" id="client-name" placeholder="Ex: Souleymane Diallo" required>
+              <input type="text" id="client-name" placeholder="Ex: Souleymane Diallo" required style="width: 100%; padding: 10px; border: 1.5px solid var(--border-light); border-radius: var(--radius-sm); font-size: 13.5px;">
             </div>
-            <div class="checkout-form-group">
+            <div class="checkout-form-group" style="margin-top: 12px;">
               <label for="client-phone">Téléphone *</label>
-              <input type="tel" id="client-phone" placeholder="Ex: 77 123 45 67" required>
+              <input type="tel" id="client-phone" placeholder="Ex: 77 123 45 67" required style="width: 100%; padding: 10px; border: 1.5px solid var(--border-light); border-radius: var(--radius-sm); font-size: 13.5px;">
             </div>
+
+            <!-- Shipping Zone (conditionally shown) -->
+            <div id="shipping-zone-container" class="shipping-conditional-fields collapsed" style="padding: 14px 0; border-bottom: 1px solid var(--border-light);">
+              <label style="font-size: 13px; font-weight: 600; color: var(--text-dark); display:block; margin-bottom: 8px;">
+                Zone de livraison (Dakar) * :
+              </label>
+              <select id="shipping-zone-select" class="shipping-zone-select">
+                <option value="" disabled selected>Choisir mon quartier...</option>
+                <!-- Populated by JS -->
+              </select>
+            </div>
+
             <!-- Address container (conditionally shown) -->
-            <div id="client-address-container" class="checkout-form-group shipping-conditional-fields collapsed">
+            <div id="client-address-container" class="checkout-form-group shipping-conditional-fields collapsed" style="margin-top: 12px;">
               <label for="client-address">Adresse exacte à Dakar *</label>
-              <textarea id="client-address" rows="3" placeholder="Ex: Liberté 6, en face de la banque, 2ème immeuble rouge"></textarea>
+              <textarea id="client-address" rows="3" placeholder="Ex: Liberté 6, en face de la banque, 2ème immeuble rouge" style="width: 100%; padding: 10px; border: 1.5px solid var(--border-light); border-radius: var(--radius-sm); font-size: 13.5px;"></textarea>
             </div>
-            <div class="checkout-form-group">
+
+            <div class="checkout-form-group" style="margin-top: 12px; margin-bottom: 16px;">
               <label for="client-notes">Instructions additionnelles (facultatif)</label>
-              <textarea id="client-notes" rows="2" placeholder="Ex: Appeler avant de venir"></textarea>
+              <textarea id="client-notes" rows="2" placeholder="Ex: Appeler avant de venir" style="width: 100%; padding: 10px; border: 1.5px solid var(--border-light); border-radius: var(--radius-sm); font-size: 13.5px;"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px; font-size: 15px; margin-top: 4px;">
-              <svg class="btn-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-              Valider ma Commande
-            </button>
-          </form>
-        </div>
+
+            <!-- Pricing lines -->
+            <div class="summary-row">
+              <span>Sous-total</span>
+              <span id="cart-subtotal-val" style="font-weight: 600;">0 FCFA</span>
+            </div>
+            <div class="summary-row">
+              <span>Frais de livraison</span>
+              <span id="cart-shipping-val" style="color: var(--primary); font-weight: 600;">Gratuit (Retrait)</span>
+            </div>
+
+            <!-- Delivery Notice -->
+            <div class="delivery-notice-box">
+              <span class="notice-bullet">o</span>
+              <p class="notice-text">
+                Hors de Dakar: Pour toute livraison hors de Dakar, le paiement se fait avant la livraison. 
+                Les frais de livraison seront calculés au poids et vous seront communiqués par un de nos commerciaux.
+              </p>
+            </div>
+            <div class="delivery-notice-sub">
+              Shipping options will be updated during checkout.
+            </div>
+
+            <div class="summary-divider"></div>
+
+            <!-- Total General -->
+            <div class="summary-total-row">
+              <span class="total-label">Total</span>
+              <span class="total-amount" id="cart-total-val">0 FCFA</span>
+            </div>
+
+            <!-- Payment note -->
+            <div class="payment-note-box">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+              <span>Paiement à la livraison (Espèces, Wave ou Orange Money)</span>
+            </div>
+
+            <!-- Action buttons stack -->
+            <div class="checkout-actions">
+              <button type="submit" class="btn-checkout-primary">
+                Valider la commande
+              </button>
+              <button type="button" class="btn-checkout-secondary" onclick="window.location.href='products.html'">
+                Continuer le shopping
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </main>
