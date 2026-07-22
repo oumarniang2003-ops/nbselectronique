@@ -914,8 +914,8 @@ textarea {
 }
 
 .category-icon-box {
-  width: 60px;
-  height: 60px;
+  width: 68px;
+  height: 68px;
   background: #f8f9fa;
   border-radius: 50%;
   display: flex;
@@ -923,14 +923,14 @@ textarea {
   justify-content: center;
   transition: var(--transition);
   overflow: hidden;
-  padding: 6px;
-  border: 1px solid var(--border-light);
+  padding: 0;
+  border: 2px solid var(--border-light);
 }
 
 .category-icon-box img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 50%;
   transition: var(--transition);
 }
