@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catalogue Produits | NBS</title>
+  <title>Télévisions Smart & 4K | NBS</title>
   <meta name="description"
-    content="Découvrez notre catalogue complet d'électroménager à Dakar. Filtrez par catégorie et prix et trouvez l'appareil idéal.">
+    content="Découvrez notre sélection de téléviseurs Smart TV et 4K de grandes marques (LG, Samsung, Roch) à Dakar avec paiement à la livraison.">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -44,7 +44,7 @@
     <div class="container header-inner">
       <a href="index.html" class="logo">NBS</a>
       <div class="header-search">
-        <input type="text" id="header-search-input" placeholder="Rechercher un produit..." aria-label="Recherche">
+        <input type="text" id="header-search-input" placeholder="Rechercher une télévision..." aria-label="Recherche">
         <button onclick="handleHeaderSearch()">
           <svg viewBox="0 0 24 24">
             <path
@@ -83,7 +83,7 @@
           <a href="index.html" class="nav-link">Accueil</a>
           <a href="products.html?category=refrigerators" class="nav-link">Réfrigérateurs</a>
           <a href="products.html?category=freezers" class="nav-link">Congélateurs</a>
-          <a href="televisions.html" class="nav-link">Télévisions</a>
+          <a href="televisions.html" class="nav-link active">Télévisions</a>
           <a href="products.html?category=washing_machines" class="nav-link">Machines à Laver</a>
           <a href="products.html?category=ventilateurs" class="nav-link">Ventilateurs</a>
           <a href="products.html?category=bouilliores" class="nav-link">Bouilloires</a>
@@ -101,14 +101,13 @@
     <div class="breadcrumb">
       <a href="index.html">Accueil</a>
       <span class="breadcrumb-separator">/</span>
-      <span class="current" id="breadcrumb-current">Boutique</span>
+      <span class="current" id="breadcrumb-current">Télévisions</span>
     </div>
 
     <!-- Page Title -->
     <div style="margin-bottom: 20px;">
-      <h1 class="section-title" style="font-size: 24px;">Catalogue Électroménager</h1>
-      <p style="color: var(--text-muted); font-size: 13.5px; margin-top: 4px;">Trouvez des appareils de qualité adaptés
-        à votre foyer</p>
+      <h1 class="section-title" style="font-size: 24px;">Télévisions Smart &amp; 4K</h1>
+      <p style="color: var(--text-muted); font-size: 13.5px; margin-top: 4px;">Profitez de la meilleure expérience visuelle à domicile</p>
     </div>
 
     <!-- Layout -->
@@ -121,39 +120,11 @@
           <h3 class="filter-title">Recherche</h3>
           <div class="search-bar-wrapper" style="max-width: 100%;">
             <input type="text" id="search-box" class="search-input" style="padding: 10px 40px 10px 14px;"
-              placeholder="Ex: Smart, Roch...">
+              placeholder="Ex: LG, Samsung, Roch...">
             <svg class="search-icon" viewBox="0 0 24 24">
               <path
                 d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
             </svg>
-          </div>
-        </div>
-
-        <!-- Categories -->
-        <div class="filter-group">
-          <h3 class="filter-title">Catégories</h3>
-          <div class="filter-options" id="category-filters">
-            <label class="checkbox-label">
-              <input type="checkbox" value="refrigerators" class="category-checkbox"> Réfrigérateurs
-            </label>
-            <label class="checkbox-label">
-              <input type="checkbox" value="freezers" class="category-checkbox"> Congélateurs
-            </label>
-            <label class="checkbox-label">
-              <input type="checkbox" value="televisions" class="category-checkbox"> Télévisions
-            </label>
-            <label class="checkbox-label">
-              <input type="checkbox" value="washing_machines" class="category-checkbox"> Machines à Laver
-            </label>
-            <label class="checkbox-label">
-              <input type="checkbox" value="ventilateurs" class="category-checkbox"> Ventilateurs
-            </label>
-            <label class="checkbox-label">
-              <input type="checkbox" value="bouilliores" class="category-checkbox"> Bouilloires
-            </label>
-            <label class="checkbox-label">
-              <input type="checkbox" value="accessories" class="category-checkbox"> Électroménager Cuisine
-            </label>
           </div>
         </div>
 
@@ -204,7 +175,7 @@
             <path
               d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
           </svg>
-          <h3>Aucun produit trouvé</h3>
+          <h3>Aucune télévision trouvée</h3>
           <p>Essayez de modifier vos critères de recherche ou d'effacer les filtres.</p>
         </div>
       </section>
@@ -238,7 +209,6 @@
             <li><a href="products.html?category=freezers">Congélateurs</a></li>
             <li><a href="televisions.html">Télévisions</a></li>
             <li><a href="products.html?category=washing_machines">Machines à Laver</a></li>
-            <li><a href="products.html?category=ventilateurs">Ventilateurs</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -299,7 +269,7 @@
       if (e.key === 'Enter') handleHeaderSearch();
     });
 
-    const filters = { search: '', categories: [], priceMin: 0, priceMax: 1000000, sortBy: 'default' };
+    const filters = { search: '', priceMin: 0, priceMax: 1000000, sortBy: 'default' };
 
     const grid = document.getElementById('products-catalog-grid');
     const emptyState = document.getElementById('catalog-empty-state');
@@ -309,22 +279,6 @@
     const priceMaxInput = document.getElementById('price-max');
     const sortSelect = document.getElementById('sort-select');
     const resetBtn = document.getElementById('btn-reset-filters');
-    const categoryCheckboxes = document.querySelectorAll('.category-checkbox');
-
-    function parseQueryParams() {
-      const params = new URLSearchParams(window.location.search);
-      const catParam = params.get('category');
-      const searchParam = params.get('search');
-      if (catParam) {
-        filters.categories = [catParam];
-        categoryCheckboxes.forEach(cb => { if (cb.value === catParam) cb.checked = true; });
-        document.getElementById('breadcrumb-current').textContent = catParam.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
-      }
-      if (searchParam) {
-        filters.search = searchParam;
-        searchBox.value = searchParam;
-      }
-    }
 
     function buildCard(product) {
       const card = document.createElement('div');
@@ -363,11 +317,11 @@
     async function renderCatalog() {
       await loadProducts();
       let filtered = PRODUCTS.filter(product => {
+        if (product.category !== 'televisions') return false;
         if (filters.search) {
           const q = filters.search.toLowerCase();
           if (!product.name.toLowerCase().includes(q) && !product.description.toLowerCase().includes(q) && !product.categoryDisplay.toLowerCase().includes(q)) return false;
         }
-        if (filters.categories.length > 0 && !filters.categories.includes(product.category)) return false;
         if (product.price < filters.priceMin || product.price > filters.priceMax) return false;
         return true;
       });
@@ -377,7 +331,7 @@
       else if (filters.sortBy === 'rating') filtered.sort((a, b) => b.rating - a.rating);
       else filtered.sort((a, b) => (a.featured && !b.featured ? -1 : !a.featured && b.featured ? 1 : 0));
 
-      resultsCount.textContent = `${filtered.length} ${filtered.length > 1 ? 'produits trouvés' : 'produit trouvé'}`;
+      resultsCount.textContent = `${filtered.length} ${filtered.length > 1 ? 'télévisions trouvées' : 'télévision trouvée'}`;
       grid.innerHTML = '';
 
       if (filtered.length === 0) {
@@ -392,26 +346,17 @@
 
     function setupFilterEvents() {
       searchBox.addEventListener('input', e => { filters.search = e.target.value; renderCatalog(); });
-      categoryCheckboxes.forEach(cb => {
-        cb.addEventListener('change', () => {
-          filters.categories = Array.from(categoryCheckboxes).filter(c => c.checked).map(c => c.value);
-          renderCatalog();
-        });
-      });
       priceMinInput.addEventListener('input', e => { filters.priceMin = Number(e.target.value) || 0; renderCatalog(); });
       priceMaxInput.addEventListener('input', e => { filters.priceMax = Number(e.target.value) || 1000000; renderCatalog(); });
       sortSelect.addEventListener('change', e => { filters.sortBy = e.target.value; renderCatalog(); });
       resetBtn.addEventListener('click', () => {
-        Object.assign(filters, { search: '', categories: [], priceMin: 0, priceMax: 1000000, sortBy: 'default' });
+        Object.assign(filters, { search: '', priceMin: 0, priceMax: 1000000, sortBy: 'default' });
         searchBox.value = ''; priceMinInput.value = 0; priceMaxInput.value = 1000000; sortSelect.value = 'default';
-        categoryCheckboxes.forEach(c => c.checked = false);
-        window.history.replaceState({}, document.title, window.location.pathname);
         renderCatalog();
       });
     }
 
     document.addEventListener('DOMContentLoaded', async () => {
-      parseQueryParams();
       setupFilterEvents();
       await renderCatalog();
     });

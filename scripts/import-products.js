@@ -285,6 +285,62 @@ const PRODUCTS = [
         features: ["Corps en acier inoxydable", "Indicateur de niveau d'eau visible", "Arrêt automatique à ébullition", "Base rotative 360°", "Poignée isolée thermiquement"],
         specs: { "Marque": "Enduro", "Capacité": "1.7 Litres", "Puissance": "2200 W", "Couleur": "Noir inox", "Garantie": "1 An" },
         featured: false
+    },
+    {
+        id: "smart-tv-32h",
+        name: "Téléviseur Smart Technology 32\" LED Smart TV",
+        category: "televisions",
+        categoryDisplay: "Télévisions",
+        price: 79000,
+        rating: 4.6,
+        reviewsCount: 38,
+        image: "images/products/tv-smart-32.png",
+        description: "Téléviseur LED 32 pouces Smart Technology. Accédez à vos applications préférées comme YouTube et Netflix directement depuis votre canapé. Design élégant et compact.",
+        features: ["Écran LED 32 pouces (81 cm)", "Smart TV avec Wi-Fi intégré", "Applications préinstallées (Netflix, YouTube)", "Ports HDMI et USB", "Résolution HD claire"],
+        specs: { "Marque": "Smart Technology", "Taille": "32 Pouces (81 cm)", "Résolution": "HD", "Connectivité": "Wi-Fi, HDMI, USB", "Garantie": "1 An" },
+        featured: false
+    },
+    {
+        id: "roch-tv-43h",
+        name: "Téléviseur Roch 43\" Smart TV Full HD",
+        category: "televisions",
+        categoryDisplay: "Télévisions",
+        price: 139000,
+        rating: 4.7,
+        reviewsCount: 29,
+        image: "images/products/tv-roch-43.png",
+        description: "Téléviseur intelligent Roch de 43 pouces avec résolution Full HD. Profitez d'une qualité d'image exceptionnelle avec des couleurs réalistes et un son immersif.",
+        features: ["Écran Full HD 43 pouces (109 cm)", "Smart Android TV", "Wi-Fi et décodeur intégré", "Contraste dynamique élevé", "Son Dolby Digital"],
+        specs: { "Marque": "Roch", "Taille": "43 Pouces (109 cm)", "Résolution": "Full HD", "Système": "Android TV", "Garantie": "1 An" },
+        featured: true
+    },
+    {
+        id: "lg-tv-55u",
+        name: "Smart TV LG 55\" UHD 4K ThinQ AI",
+        category: "televisions",
+        categoryDisplay: "Télévisions",
+        price: 299000,
+        rating: 4.9,
+        reviewsCount: 42,
+        image: "images/products/tv-lg-55.png",
+        description: "Téléviseur intelligent premium LG 55 pouces avec résolution Ultra HD 4K et intelligence artificielle ThinQ. Des couleurs spectaculaires et une netteté inégalée.",
+        features: ["Écran Ultra HD 4K 55 pouces (139 cm)", "Processeur intelligent alpha 5 Gen5", "ThinQ AI et WebOS Smart TV", "HDR10 Pro", "Son surround virtuel"],
+        specs: { "Marque": "LG", "Taille": "55 Pouces (139 cm)", "Résolution": "UHD 4K", "Système": "WebOS", "Garantie": "2 Ans" },
+        featured: true
+    },
+    {
+        id: "samsung-tv-65u",
+        name: "Smart TV Samsung 65\" Crystal UHD 4K",
+        category: "televisions",
+        categoryDisplay: "Télévisions",
+        price: 399000,
+        rating: 4.9,
+        reviewsCount: 23,
+        image: "images/products/tv-samsung-65.png",
+        description: "Téléviseur géant Samsung 65 pouces Crystal UHD 4K. Une immersion totale avec un design ultra fin sans bordures et des nuances de couleurs d'un réalisme frappant.",
+        features: ["Écran Crystal UHD 4K 65 pouces (165 cm)", "Design fin sans bordures (3-Side Boundless)", "Processeur Crystal 4K", "Smart TV Tizen avec guide universel", "Compatible avec Google Assistant & Alexa"],
+        specs: { "Marque": "Samsung", "Taille": "65 Pouces (165 cm)", "Résolution": "UHD 4K", "Système": "Tizen", "Garantie": "2 Ans" },
+        featured: false
     }
 ];
 
