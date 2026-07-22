@@ -285,6 +285,48 @@ const PRODUCTS = [
         features: ["Corps en acier inoxydable", "Indicateur de niveau d'eau visible", "Arrêt automatique à ébullition", "Base rotative 360°", "Poignée isolée thermiquement"],
         specs: { "Marque": "Enduro", "Capacité": "1.7 Litres", "Puissance": "2200 W", "Couleur": "Noir inox", "Garantie": "1 An" },
         featured: false
+    },
+    {
+        id: "Tv-32pouces",
+        name: "Google TV 32GT3022A 32 Pouces",
+        category: "televisions",
+        categoryDisplay: "Télévisions",
+        price: 85000,
+        rating: 4.7,
+        reviewsCount: 12,
+        image: "https://z0m1zfhkezx39ppv.public.blob.vercel-storage.com/IMG_4101-LUZ363yGQQSudmI4oaYMeqcxSQdknC.jpeg",
+        description: "Google TV Astech 32 Pouces Smart TV. Profitez de vos applications préférées avec une superbe qualité d'image HD et un contrôle vocal intelligent.",
+        features: ["Écran 32 pouces", "Google TV", "Applications Netflix, YouTube", "Assistant vocal intégré"],
+        specs: { "Marque": "Astech", "Taille": "32 Pouces", "Type": "Google TV" },
+        featured: false
+    },
+    {
+        id: "Tv-43pouces",
+        name: "Google TV 43GT3022A 43 Pouces",
+        category: "televisions",
+        categoryDisplay: "Télévisions",
+        price: 135000,
+        rating: 4.8,
+        reviewsCount: 18,
+        image: "https://z0m1zfhkezx39ppv.public.blob.vercel-storage.com/IMG_4102-0PJBuLA95isSQO1XW4YGDR5sGrsQTr.jpeg",
+        description: "Google TV Astech 43 Pouces Full HD Smart TV. Une immersion complète avec des contrastes exceptionnels et le système d'exploitation Google TV ultra rapide.",
+        features: ["Écran 43 pouces Full HD", "Google TV", "Assistant Google", "Wi-Fi intégré", "Son Dolby Audio"],
+        specs: { "Marque": "Astech", "Taille": "43 Pouces", "Résolution": "Full HD", "Type": "Google TV" },
+        featured: true
+    },
+    {
+        id: "Tv-50pouces",
+        name: "Google TV 50GT3022 ASTECH 50 Pouces 2024",
+        category: "televisions",
+        categoryDisplay: "Télévisions",
+        price: 215000,
+        rating: 4.8,
+        reviewsCount: 22,
+        image: "https://z0m1zfhkezx39ppv.public.blob.vercel-storage.com/IMG_4103-lOHGAEsM4cbtCUaMm2KGMsF4xl6zQL.jpeg",
+        description: "Google TV Astech 50 Pouces Ultra HD 4K Modèle 2024. Profitez d'une résolution 4K incroyable avec la fluidité et les fonctionnalités intellectuelles de Google TV.",
+        features: ["Écran 50 pouces 4K UHD", "Google TV 2024", "Résolution 4K ultra nette", "HDR10+", "Contrôle vocal mains libres"],
+        specs: { "Marque": "Astech", "Taille": "50 Pouces", "Résolution": "4K UHD", "Type": "Google TV" },
+        featured: false
     }
 ];
 
