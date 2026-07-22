@@ -275,8 +275,8 @@ const PRODUCTS = [
     {
         id: "enduro-bouilloire",
         name: "Bouilloire Enduro Électrique Noire",
-        category: "bouilliores",
-        categoryDisplay: "Bouilloires",
+        category: "accessories",
+        categoryDisplay: "Électroménager Cuisine",
         price: 15000,
         rating: 4.7,
         reviewsCount: 44,
