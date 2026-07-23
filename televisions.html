@@ -363,7 +363,7 @@
       const imgSrc = product.image || '';
       const price = typeof app !== 'undefined' ? app.formatPrice(product.price) : product.price.toLocaleString('fr-FR') + ' FCFA';
       card.innerHTML = `
-        ${product.featured ? '<span class="product-badge">Vedette</span>' : ''}
+        ${product.in_stock === false ? '<span class="product-badge" style="background:#e53935;color:#fff;">Rupture</span>' : (product.featured ? '<span class="product-badge">Vedette</span>' : '')}
         <div class="product-image-box">
           <a href="product-detail.html?id=${product.id}">
             <img src="${imgSrc}" alt="${product.name}" loading="lazy" onerror="this.style.opacity='0.2'">
@@ -379,9 +379,15 @@
           </div>
           <div class="product-price-row">
             <span class="product-price">${price}</span>
+            ${product.in_stock === false ? `
+            <button class="btn-add-cart-icon disabled" style="background:#ccc;cursor:not-allowed;" title="En rupture de stock" disabled>
+              <svg viewBox="0 0 24 24" style="fill:#888;"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            </button>
+            ` : `
             <button class="btn-add-cart-icon" onclick="app && app.addToCart('${product.id}', 1)" title="Ajouter au panier">
               <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
             </button>
+            `}
           </div>
         </div>
       `;

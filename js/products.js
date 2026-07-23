@@ -17,7 +17,8 @@ async function loadProducts() {
     description: p.description,
     features: p.features,
     specs: p.specs,
-    featured: p.featured
+    featured: p.featured,
+    in_stock: p.in_stock
   }));
 
   return PRODUCTS;

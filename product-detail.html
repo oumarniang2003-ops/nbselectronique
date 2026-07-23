@@ -476,6 +476,45 @@
         specsTable.appendChild(row);
       }
 
+      // Check stock status
+      const btnAddToCart = document.getElementById('btn-add-to-cart');
+      const qtyMinus = document.getElementById('qty-minus');
+      const qtyPlus = document.getElementById('qty-plus');
+      const qtyInput = document.getElementById('qty-input');
+
+      if (currentProduct.in_stock === false) {
+        if (!document.getElementById('stock-badge')) {
+          const badge = document.createElement('span');
+          badge.id = 'stock-badge';
+          badge.style.background = '#e53935';
+          badge.style.color = '#fff';
+          badge.style.padding = '3px 8px';
+          badge.style.fontSize = '12px';
+          badge.style.fontWeight = '700';
+          badge.style.borderRadius = '3px';
+          badge.style.marginLeft = '12px';
+          badge.style.display = 'inline-block';
+          badge.style.verticalAlign = 'middle';
+          badge.textContent = 'Rupture de stock';
+          document.getElementById('detail-product-price').appendChild(badge);
+        }
+        
+        btnAddToCart.disabled = true;
+        btnAddToCart.style.background = '#ccc';
+        btnAddToCart.style.borderColor = '#ccc';
+        btnAddToCart.style.color = '#777';
+        btnAddToCart.style.cursor = 'not-allowed';
+        btnAddToCart.innerHTML = 'Rupture de Stock';
+        
+        qtyMinus.disabled = true;
+        qtyMinus.style.cursor = 'not-allowed';
+        qtyMinus.style.opacity = '0.5';
+        qtyPlus.disabled = true;
+        qtyPlus.style.cursor = 'not-allowed';
+        qtyPlus.style.opacity = '0.5';
+        qtyInput.value = 0;
+      }
+
       renderRelatedProducts();
     }
 
@@ -484,35 +523,42 @@
       const container = document.getElementById('related-products-container');
       container.innerHTML = '';
       let related = PRODUCTS.filter(p => p.category === currentProduct.category && p.id !== currentProduct.id);
-      if (related.length === 0) related = PRODUCTS.filter(p => p.id !== currentProduct.id).slice(0, 4);
+      if (related.length === 0) related = PRODUCTS.filter(p => p.id !== currentProduct.id);
 
-
-      const card = document.createElement('div');
-      card.className = 'product-card';
-      let stars = '';
-      const full = Math.floor(product.rating);
-      for (let i = 0; i < 5; i++) stars += i < full ? '★' : '☆';
-      const price = typeof app !== 'undefined' ? app.formatPrice(product.price) : product.price.toLocaleString('fr-FR') + ' FCFA';
-      card.innerHTML = `
-          ${product.featured ? '<span class="product-badge">Vedette</span>' : ''}
-          <div class="product-image-box">
-            <a href="product-detail.html?id=${product.id}">
-              <img src="${product.image || ''}" alt="${product.name}" loading="lazy" onerror="this.style.opacity='0.2'">
-            </a>
-          </div>
-          <div class="product-details">
-            <span class="product-cat">${product.categoryDisplay}</span>
-            <a href="product-detail.html?id=${product.id}"><h3 class="product-name">${product.name}</h3></a>
-            <div class="product-rating"><span>${stars}</span><span style="color:#666;font-size:12px;">${product.rating}</span></div>
-            <div class="product-price-row">
-              <span class="product-price">${price}</span>
-              <button class="btn-add-cart-icon" onclick="app && app.addToCart('${product.id}', 1)">
-                <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-              </button>
+      related.slice(0, 4).forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        let stars = '';
+        const full = Math.floor(product.rating);
+        for (let i = 0; i < 5; i++) stars += i < full ? '★' : '☆';
+        const price = typeof app !== 'undefined' ? app.formatPrice(product.price) : product.price.toLocaleString('fr-FR') + ' FCFA';
+        card.innerHTML = `
+            ${product.in_stock === false ? '<span class="product-badge" style="background:#e53935;color:#fff;">Rupture</span>' : (product.featured ? '<span class="product-badge">Vedette</span>' : '')}
+            <div class="product-image-box">
+              <a href="product-detail.html?id=${product.id}">
+                <img src="${product.image || ''}" alt="${product.name}" loading="lazy" onerror="this.style.opacity='0.2'">
+              </a>
             </div>
-          </div>
-        `;
-      container.appendChild(card);
+            <div class="product-details">
+              <span class="product-cat">${product.categoryDisplay}</span>
+              <a href="product-detail.html?id=${product.id}"><h3 class="product-name">${product.name}</h3></a>
+              <div class="product-rating"><span>${stars}</span><span style="color:#666;font-size:12px;">${product.rating}</span></div>
+              <div class="product-price-row">
+                <span class="product-price">${price}</span>
+                ${product.in_stock === false ? `
+                <button class="btn-add-cart-icon disabled" style="background:#ccc;cursor:not-allowed;" title="En rupture de stock" disabled>
+                  <svg viewBox="0 0 24 24" style="fill:#888;"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                </button>
+                ` : `
+                <button class="btn-add-cart-icon" onclick="app && app.addToCart('${product.id}', 1)">
+                  <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                </button>
+                `}
+              </div>
+            </div>
+          `;
+        container.appendChild(card);
+      });
     }
 
 

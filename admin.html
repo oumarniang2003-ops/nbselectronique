@@ -241,8 +241,8 @@
             <label>Caractéristiques (une par ligne)</label>
             <textarea id="f-features" rows="4" placeholder="Double porte&#10;Technologie No Frost&#10;..."></textarea>
 
-            <label><input type="checkbox" id="f-featured" style="width:auto;display:inline-block;"> Produit
-                vedette</label>
+            <label><input type="checkbox" id="f-featured" style="width:auto;display:inline-block;"> Produit vedette</label>
+            <label><input type="checkbox" id="f-out-of-stock" style="width:auto;display:inline-block;"> En rupture de stock</label>
 
             <label>Photo du produit</label>
             <input type="file" id="f-image-file" accept="image/*" onchange="previewImage()">
@@ -333,10 +333,11 @@
             allProducts.forEach(p => {
                 const row = document.createElement('div');
                 row.className = 'product-row';
+                const stockBadge = p.in_stock === false ? '<span style="background:#e53935;color:#fff;padding:2px 6px;font-size:11px;font-weight:bold;border-radius:3px;margin-left:8px;">Rupture</span>' : '';
                 row.innerHTML = `
       <img src="${p.image || ''}" onerror="this.style.display='none'">
       <div class="info">
-        <strong>${p.name}</strong>
+        <strong>${p.name}${stockBadge}</strong>
         <span>${p.category_display || p.category} · ${Number(p.price).toLocaleString()} FCFA</span>
       </div>
       <button onclick="editProduct('${p.id}')">Modifier</button>
@@ -362,6 +363,7 @@
             const features = Array.isArray(p.features) ? p.features : [];
             document.getElementById('f-features').value = features.join('\n');
             document.getElementById('f-featured').checked = !!p.featured;
+            document.getElementById('f-out-of-stock').checked = p.in_stock === false;
             document.getElementById('f-image-url').value = p.image || '';
             const preview = document.getElementById('image-preview');
             if (p.image) {
@@ -386,6 +388,7 @@
             document.getElementById('f-description').value = '';
             document.getElementById('f-features').value = '';
             document.getElementById('f-featured').checked = false;
+            document.getElementById('f-out-of-stock').checked = false;
             document.getElementById('f-image-url').value = '';
             document.getElementById('f-image-file').value = '';
             document.getElementById('image-preview').classList.add('hidden');
@@ -445,7 +448,8 @@
                     description: document.getElementById('f-description').value,
                     features: document.getElementById('f-features').value.split('\n').map(s => s.trim()).filter(Boolean),
                     specs: {},
-                    featured: document.getElementById('f-featured').checked
+                    featured: document.getElementById('f-featured').checked,
+                    in_stock: !document.getElementById('f-out-of-stock').checked
                 };
 
                 const res = await fetch('/api/admin-products', {

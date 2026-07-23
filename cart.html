@@ -457,6 +457,11 @@
 
     async function loadDeliveryPrices() {
       try {
+        await loadProducts();
+      } catch (err) {
+        console.error("Could not load products:", err);
+      }
+      try {
         const response = await fetch('delivery-prices.json');
         if (!response.ok) throw new Error("Status " + response.status);
         deliveryPrices = await response.json();
@@ -531,7 +536,12 @@
       emptyView.style.display = 'none';
       itemsList.innerHTML = '';
 
+      let hasOutOfStock = false;
       cart.forEach(item => {
+        const dbProduct = typeof PRODUCTS !== 'undefined' ? PRODUCTS.find(p => p.id === item.id) : null;
+        const isOutOfStock = dbProduct ? (dbProduct.in_stock === false) : false;
+        if (isOutOfStock) hasOutOfStock = true;
+
         const row = document.createElement('div');
         row.className = 'cart-item';
         const itemTotal = item.price * item.quantity;
@@ -539,16 +549,20 @@
           <div class="cart-item-info">
             <img class="cart-item-img" src="${item.image || ''}" alt="${item.name}" onerror="this.style.opacity='0.1'">
             <div>
-              <div class="cart-item-name"><a href="product-detail.html?id=${item.id}">${item.name}</a></div>
+              <div class="cart-item-name">
+                <a href="product-detail.html?id=${item.id}">${item.name}</a>
+                ${isOutOfStock ? '<span style="background:#e53935;color:#fff;padding:2px 6px;font-size:11px;font-weight:bold;border-radius:3px;margin-left:8px;">Rupture</span>' : ''}
+              </div>
               <div class="cart-item-cat">${item.categoryDisplay || ''}</div>
+              ${isOutOfStock ? '<div style="color:#e53935;font-size:12px;margin-top:4px;">Cet article est en rupture de stock. Veuillez le supprimer pour valider.</div>' : ''}
             </div>
           </div>
           <div class="cart-item-price">${app.formatPrice(item.price)}</div>
           <div>
             <div class="qty-wrapper" style="justify-content:center;">
-              <button class="qty-btn" onclick="updateQty('${item.id}', ${item.quantity - 1})">−</button>
+              <button class="qty-btn" onclick="updateQty('${item.id}', ${item.quantity - 1})" ${isOutOfStock ? 'disabled style="opacity:0.5;cursor:not-allowed;"' : ''}>−</button>
               <input type="number" class="qty-input" value="${item.quantity}" readonly>
-              <button class="qty-btn" onclick="updateQty('${item.id}', ${item.quantity + 1})">+</button>
+              <button class="qty-btn" onclick="updateQty('${item.id}', ${item.quantity + 1})" ${isOutOfStock ? 'disabled style="opacity:0.5;cursor:not-allowed;"' : ''}>+</button>
             </div>
           </div>
           <div class="cart-item-total">${app.formatPrice(itemTotal)}</div>
@@ -558,6 +572,23 @@
         `;
         itemsList.appendChild(row);
       });
+
+      const btnCheckout = document.querySelector('.btn-checkout-primary');
+      if (btnCheckout) {
+        if (hasOutOfStock) {
+          btnCheckout.disabled = true;
+          btnCheckout.style.background = '#ccc';
+          btnCheckout.style.borderColor = '#ccc';
+          btnCheckout.style.cursor = 'not-allowed';
+          btnCheckout.innerHTML = 'Rupture de Stock (Veuillez retirer les articles indisponibles)';
+        } else {
+          btnCheckout.disabled = false;
+          btnCheckout.style.background = '';
+          btnCheckout.style.borderColor = '';
+          btnCheckout.style.cursor = '';
+          btnCheckout.innerHTML = 'VALIDER LA COMMANDE';
+        }
+      }
 
       const subtotal = app.getCartSubtotal();
       subtotalText.textContent = app.formatPrice(subtotal);

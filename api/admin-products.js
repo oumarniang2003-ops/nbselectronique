@@ -27,13 +27,13 @@ export default async function handler(req, res) {
                 return res.status(400).json({ error: 'id, name et price sont obligatoires' });
             }
             await pool.query(
-                `INSERT INTO produits (id, name, category, category_display, price, rating, reviews_count, image, description, features, specs, featured)
-         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)`,
+                `INSERT INTO produits (id, name, category, category_display, price, rating, reviews_count, image, description, features, specs, featured, in_stock)
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)`,
                 [
                     p.id, p.name, p.category || '', p.category_display || '',
                     p.price, p.rating || 0, p.reviews_count || 0, p.image || '',
                     p.description || '', JSON.stringify(p.features || []),
-                    JSON.stringify(p.specs || {}), !!p.featured
+                    JSON.stringify(p.specs || {}), !!p.featured, p.in_stock !== undefined ? !!p.in_stock : true
                 ]
             );
             return res.status(201).json({ ok: true });
@@ -48,13 +48,13 @@ export default async function handler(req, res) {
                 `UPDATE produits SET
            name=$2, category=$3, category_display=$4, price=$5,
            rating=$6, reviews_count=$7, image=$8, description=$9,
-           features=$10, specs=$11, featured=$12
+           features=$10, specs=$11, featured=$12, in_stock=$13
          WHERE id=$1`,
                 [
                     p.id, p.name, p.category || '', p.category_display || '',
                     p.price, p.rating || 0, p.reviews_count || 0, p.image || '',
                     p.description || '', JSON.stringify(p.features || []),
-                    JSON.stringify(p.specs || {}), !!p.featured
+                    JSON.stringify(p.specs || {}), !!p.featured, p.in_stock !== undefined ? !!p.in_stock : true
                 ]
             );
             return res.status(200).json({ ok: true });
